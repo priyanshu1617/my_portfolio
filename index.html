@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyanshu Chandra | Portfolio</title>
+    <!-- Meta Description for SEO -->
+    <meta name="description" content="Portfolio of Priyanshu Chandra, an aspiring Software Engineer and MERN Stack Developer building responsive web apps and mastering DSA.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Canvas for Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Floating Navigation Bar -->
+    <header class="navbar" id="main-navbar">
+        <div class="logo">
+            <span class="logo-accent">&lt;</span>Priyanshu<span class="logo-accent">/&gt;</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#stats">Stats</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="menu-toggle" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-content">
+            <span class="welcome-tag">Welcome to my space</span>
+            <h1 class="hero-title">Hi, I'm <span class="glowing-text">Priyanshu Chandra</span></h1>
+            <h2 class="hero-subtitle">
+                I'm a <span id="typewriter" class="typing-text"></span><span class="cursor">|</span>
+            </h2>
+            <p class="hero-description">
+                Building efficient full-stack web applications with the MERN stack and Django, while strengthening software foundation via Java Data Structures & Algorithms.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            </div>
+            <div class="social-links-container">
+                <a href="https://github.com/priyanshu1617" target="_blank" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/priyanshu-chandra-409552312/" target="_blank" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:priyanshuchandra822@gmail.com" aria-label="Email" class="social-icon"><i class="far fa-envelope"></i></a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="avatar-glow-ring">
+                <img src="https://avatars.githubusercontent.com/u/183536059?v=4" alt="Priyanshu Chandra Avatar" class="hero-avatar">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-container">
+            <div class="about-card glass">
+                <div class="card-glow"></div>
+                <h3>My Journey</h3>
+                <p>
+                    I am an ambitious <strong>B.Tech Computer Science student</strong> from India. Driven by problem-solving and software design, I specialize in full-stack web development. I love building tools that solve real-world problems and continuously learning new paradigms.
+                </p>
+                <p>
+                    My core academic focus revolves around developing scalable systems, optimizing logic in Data Structures & Algorithms, and staying abreast of modern web tech like React, Node.js, and Django.
+                </p>
+                
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span>Education</span>
+                            <strong>B.Tech CSE Student</strong>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <span>Location</span>
+                            <strong>India</strong>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <span>Email</span>
+                            <strong>priyanshuchandra822@gmail.com</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-card glass target-card">
+                <div class="card-glow"></div>
+                <h3>What I Do</h3>
+                <ul class="activities-list">
+                    <li>
+                        <div class="activity-icon"><i class="fab fa-react"></i></div>
+                        <div class="activity-text">
+                            <strong>MERN Stack Development</strong>
+                            <p>Designing modern, responsive interfaces and REST APIs using React, Node.js, Express, and MongoDB.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="activity-icon"><i class="fab fa-python"></i></div>
+                        <div class="activity-text">
+                            <strong>Django & Python Backend</strong>
+                            <p>Architecting secure backends, managing databases, and building full-featured web applications.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="activity-icon"><i class="fas fa-code"></i></div>
+                        <div class="activity-text">
+                            <strong>Java DSA</strong>
+                            <p>Solving challenging algorithms and optimizing logic using Java for computational efficiency.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section skills-section">
+        <h2 class="section-title">My Tech Stack</h2>
+        <div class="skills-tabs">
+            <button class="tab-btn active" data-tab="all">All Skills</button>
+            <button class="tab-btn" data-tab="frontend">Frontend</button>
+            <button class="tab-btn" data-tab="backend">Backend</button>
+            <button class="tab-btn" data-tab="languages">Languages</button>
+            <button class="tab-btn" data-tab="tools">Tools</button>
+        </div>
+        
+        <div class="skills-grid" id="skills-display">
+            <!-- Skills Cards will have custom style properties -->
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-html5 skill-icon" style="color: #e34c26;"></i>
+                <span class="skill-name">HTML5</span>
+            </div>
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-css3-alt skill-icon" style="color: #264de4;"></i>
+                <span class="skill-name">CSS3</span>
+            </div>
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-js-square skill-icon" style="color: #f7df1e;"></i>
+                <span class="skill-name">JavaScript</span>
+            </div>
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-react skill-icon" style="color: #61dafb;"></i>
+                <span class="skill-name">React</span>
+            </div>
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-bootstrap skill-icon" style="color: #7952b3;"></i>
+                <span class="skill-name">Bootstrap</span>
+            </div>
+            <div class="skill-card glass" data-category="frontend">
+                <i class="fab fa-css3 skill-icon" style="color: #38bdf8;"></i>
+                <span class="skill-name">TailwindCSS</span>
+            </div>
+            
+            <div class="skill-card glass" data-category="backend">
+                <i class="fab fa-node-js skill-icon" style="color: #68a063;"></i>
+                <span class="skill-name">Node.js</span>
+            </div>
+            <div class="skill-card glass" data-category="backend">
+                <i class="fas fa-server skill-icon" style="color: #ffffff;"></i>
+                <span class="skill-name">Express.js</span>
+            </div>
+            <div class="skill-card glass" data-category="backend">
+                <i class="fas fa-database skill-icon" style="color: #4db33d;"></i>
+                <span class="skill-name">MongoDB</span>
+            </div>
+            <div class="skill-card glass" data-category="backend">
+                <i class="fas fa-leaf skill-icon" style="color: #092e20;"></i>
+                <span class="skill-name">Django</span>
+            </div>
+            <div class="skill-card glass" data-category="backend">
+                <i class="fas fa-table skill-icon" style="color: #00758f;"></i>
+                <span class="skill-name">MySQL</span>
+            </div>
+            
+            <div class="skill-card glass" data-category="languages">
+                <i class="fab fa-python skill-icon" style="color: #3776ab;"></i>
+                <span class="skill-name">Python</span>
+            </div>
+            <div class="skill-card glass" data-category="languages">
+                <i class="fab fa-java skill-icon" style="color: #f89820;"></i>
+                <span class="skill-name">Java</span>
+            </div>
+            
+            <div class="skill-card glass" data-category="tools">
+                <i class="fab fa-git-alt skill-icon" style="color: #f1502f;"></i>
+                <span class="skill-name">Git</span>
+            </div>
+            <div class="skill-card glass" data-category="tools">
+                <i class="fab fa-github skill-icon" style="color: #ffffff;"></i>
+                <span class="skill-name">GitHub</span>
+            </div>
+            <div class="skill-card glass" data-category="tools">
+                <i class="fas fa-laptop-code skill-icon" style="color: #007acc;"></i>
+                <span class="skill-name">VS Code</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+        <h2 class="section-title">My Projects</h2>
+        <p class="section-subtitle">A list of projects imported from my GitHub repository</p>
+        
+        <div class="projects-grid" id="github-projects-container">
+            <!-- Loading indicator -->
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Fetching repositories from GitHub...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Stats Section -->
+    <section id="stats" class="section stats-section">
+        <h2 class="section-title">GitHub Stats</h2>
+        <div class="stats-container">
+            <!-- Streak Stats -->
+            <div class="stats-card glass">
+                <div class="card-glow"></div>
+                <h3>Streak Statistics</h3>
+                <div class="badge-wrapper">
+                    <img src="https://github-readme-streak-stats.herokuapp.com/?user=priyanshu1617&theme=tokyonight" alt="Priyanshu Chandra's GitHub Streak Stats" class="stats-badge">
+                </div>
+            </div>
+            
+            <!-- Activity Graph -->
+            <div class="stats-card glass">
+                <div class="card-glow"></div>
+                <h3>Contribution Heatmap</h3>
+                <div class="badge-wrapper">
+                    <img src="https://github-readme-activity-graph.vercel.app/graph?username=priyanshu1617&theme=tokyo-night" alt="Priyanshu Chandra's GitHub Contribution Graph" class="stats-badge">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-wrapper">
+            <div class="contact-info glass">
+                <div class="card-glow"></div>
+                <h3>Contact Information</h3>
+                <p>Have an exciting project idea, a job opportunity, or just want to chat? Reach out to me, and I'll get back to you as soon as possible.</p>
+                
+                <div class="contact-details">
+                    <a href="mailto:priyanshuchandra822@gmail.com" class="contact-link">
+                        <i class="far fa-envelope"></i>
+                        <span>priyanshuchandra822@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/priyanshu-chandra-409552312/" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>Priyanshu Chandra (LinkedIn)</span>
+                    </a>
+                    <a href="https://github.com/priyanshu1617" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i>
+                        <span>priyanshu1617 (GitHub)</span>
+                    </a>
+                </div>
+                
+                <div class="quote-card">
+                    <p class="quote-text">"First, solve the problem. Then, write the code."</p>
+                    <span class="quote-author">- John Johnson</span>
+                </div>
+            </div>
+            
+            <div class="contact-form-container glass">
+                <div class="card-glow"></div>
+                <form id="portfolio-contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required placeholder=" ">
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <div id="form-feedback" class="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Priyanshu Chandra. All rights reserved.</p>
+            <p class="footer-subtext">Designed & Built with <i class="fas fa-heart" style="color: #ef4444;"></i> using HTML, CSS & Vanilla JS</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
