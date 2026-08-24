@@ -145,7 +145,7 @@ animateParticles();
 /* ==========================================
    TYPEWRITER EFFECT
    ========================================== */
-const words = ["MERN Stack Developer.", "Software Engineer in the Making.", "Java DSA Enthusiast.", "Django Backend Developer."];
+const words = ["MERN Stack Developer.", "Software Engineer in the Making.", "Java DSA Enthusiast."];
 let wordIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
