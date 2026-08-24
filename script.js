@@ -362,18 +362,16 @@ function renderProjects(projects) {
             tags = [...new Set(tags)];
         }
 
-        const isFeatured = project.featured || project.name === 'iter-event-portal' || project.name === 'django-blog-app';
-        const cardClass = isFeatured ? 'project-card glass featured' : 'project-card glass';
+        const cardClass = 'project-card glass';
         
         const htmlUrl = project.html_url || `https://github.com/${project.author || 'priyanshu1617'}/${project.name}`;
-        const stars = project.stargazers_count !== undefined ? project.stargazers_count : project.stars || 0;
 
         const cardHTML = `
             <div class="${cardClass}">
                 <div class="card-glow"></div>
                 <div class="project-header">
                     <div class="project-folder">
-                        <i class="${isFeatured ? 'fas fa-star' : 'far fa-folder'}"></i>
+                        <i class="far fa-folder"></i>
                     </div>
                     <div class="project-links">
                         <a href="${htmlUrl}" target="_blank" aria-label="View Source on GitHub"><i class="fab fa-github"></i></a>
@@ -385,10 +383,6 @@ function renderProjects(projects) {
                     <div class="project-tech">
                         ${tags.slice(0, 4).map(t => `<span class="tech-badge">${t}</span>`).join('')}
                     </div>
-                    ${stars > 0 ? `
-                    <div class="project-stars">
-                        <i class="fas fa-star"></i> <span>${stars}</span>
-                    </div>` : ''}
                 </div>
             </div>
         `;
