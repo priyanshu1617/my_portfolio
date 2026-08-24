@@ -309,21 +309,18 @@ const projectsContainer = document.getElementById('github-projects-container');
 
 async function loadGitHubProjects() {
     try {
-        const response = await fetch('https://api.github.com/users/priyanshu1617/repos');
+        const response = await fetch('https://pinned.berrysauce.dev/get/priyanshu1617');
         if (!response.ok) {
             throw new Error('API request failed');
         }
-        const repos = await response.json();
+        const pinnedRepos = await response.json();
         
-        // Remove profile README repo and empty names
-        const filteredRepos = repos.filter(repo => repo.name !== 'priyanshu1617' && !repo.fork);
-        
-        if (filteredRepos.length === 0) {
+        if (!pinnedRepos || pinnedRepos.length === 0) {
             useFallbackProjects();
             return;
         }
 
-        renderProjects(filteredRepos);
+        renderProjects(pinnedRepos);
     } catch (error) {
         console.warn('GitHub API rate limit or error. Loading local cached projects data.', error);
         useFallbackProjects();
@@ -344,7 +341,7 @@ function renderProjects(projects) {
         const bFeatured = b.featured || b.name === 'iter-event-portal' || b.name === 'django-blog-app';
         if (aFeatured && !bFeatured) return -1;
         if (!aFeatured && bFeatured) return 1;
-        return (b.stargazers_count || 0) - (a.stargazers_count || 0);
+        return (b.stargazers_count !== undefined ? b.stargazers_count : b.stars || 0) - (a.stargazers_count !== undefined ? a.stargazers_count : a.stars || 0);
     });
 
     sorted.forEach(project => {
@@ -368,6 +365,9 @@ function renderProjects(projects) {
         const isFeatured = project.featured || project.name === 'iter-event-portal' || project.name === 'django-blog-app';
         const cardClass = isFeatured ? 'project-card glass featured' : 'project-card glass';
         
+        const htmlUrl = project.html_url || `https://github.com/${project.author || 'priyanshu1617'}/${project.name}`;
+        const stars = project.stargazers_count !== undefined ? project.stargazers_count : project.stars || 0;
+
         const cardHTML = `
             <div class="${cardClass}">
                 <div class="card-glow"></div>
@@ -376,7 +376,7 @@ function renderProjects(projects) {
                         <i class="${isFeatured ? 'fas fa-star' : 'far fa-folder'}"></i>
                     </div>
                     <div class="project-links">
-                        <a href="${project.html_url}" target="_blank" aria-label="View Source on GitHub"><i class="fab fa-github"></i></a>
+                        <a href="${htmlUrl}" target="_blank" aria-label="View Source on GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
                 <h3>${formatRepoName(project.name)}</h3>
@@ -385,9 +385,9 @@ function renderProjects(projects) {
                     <div class="project-tech">
                         ${tags.slice(0, 4).map(t => `<span class="tech-badge">${t}</span>`).join('')}
                     </div>
-                    ${project.stargazers_count > 0 ? `
+                    ${stars > 0 ? `
                     <div class="project-stars">
-                        <i class="fas fa-star"></i> <span>${project.stargazers_count}</span>
+                        <i class="fas fa-star"></i> <span>${stars}</span>
                     </div>` : ''}
                 </div>
             </div>
