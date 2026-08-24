@@ -313,11 +313,28 @@ async function loadGitHubProjects() {
         if (!response.ok) {
             throw new Error('API request failed');
         }
-        const pinnedRepos = await response.json();
+        let pinnedRepos = await response.json();
         
         if (!pinnedRepos || pinnedRepos.length === 0) {
             useFallbackProjects();
             return;
+        }
+
+        // Try to get homepage URLs from GitHub API to show live website screenshots
+        try {
+            const ghResponse = await fetch('https://api.github.com/users/priyanshu1617/repos?per_page=100');
+            if (ghResponse.ok) {
+                const allRepos = await ghResponse.json();
+                pinnedRepos = pinnedRepos.map(pinned => {
+                    const fullRepo = allRepos.find(r => r.name === pinned.name);
+                    if (fullRepo && fullRepo.homepage) {
+                        pinned.homepage = fullRepo.homepage;
+                    }
+                    return pinned;
+                });
+            }
+        } catch (e) {
+            console.warn('Could not fetch full repo details for screenshots', e);
         }
 
         renderProjects(pinnedRepos);
@@ -366,22 +383,38 @@ function renderProjects(projects) {
         
         const htmlUrl = project.html_url || `https://github.com/${project.author || 'priyanshu1617'}/${project.name}`;
 
+        let imageUrl = `https://opengraph.githubassets.com/1/${project.author || 'priyanshu1617'}/${project.name}`;
+        let liveLinkHtml = '';
+        
+        // If the project has a live website link, take a real-time screenshot using microlink
+        if (project.homepage) {
+            const siteUrl = project.homepage.startsWith('http') ? project.homepage : `https://${project.homepage}`;
+            imageUrl = `https://api.microlink.io/?url=${encodeURIComponent(siteUrl)}&screenshot=true&meta=false&embed=screenshot.url`;
+            liveLinkHtml = `<a href="${siteUrl}" target="_blank" aria-label="Visit Live Website"><i class="fas fa-external-link-alt"></i></a>`;
+        }
+
         const cardHTML = `
             <div class="${cardClass}">
                 <div class="card-glow"></div>
-                <div class="project-header">
-                    <div class="project-folder">
-                        <i class="far fa-folder"></i>
-                    </div>
-                    <div class="project-links">
-                        <a href="${htmlUrl}" target="_blank" aria-label="View Source on GitHub"><i class="fab fa-github"></i></a>
-                    </div>
+                <div class="project-image">
+                    <img src="${imageUrl}" alt="${formatRepoName(project.name)} thumbnail" loading="lazy" />
                 </div>
-                <h3>${formatRepoName(project.name)}</h3>
-                <p>${project.description || 'No description available. Click GitHub icon to view repository code and commits.'}</p>
-                <div class="project-footer">
-                    <div class="project-tech">
-                        ${tags.slice(0, 4).map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                <div class="project-content">
+                    <div class="project-header">
+                        <div class="project-folder">
+                            <i class="far fa-folder"></i>
+                        </div>
+                        <div class="project-links">
+                            ${liveLinkHtml}
+                            <a href="${htmlUrl}" target="_blank" aria-label="View Source on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3>${formatRepoName(project.name)}</h3>
+                    <p>${project.description || 'No description available. Click GitHub icon to view repository code and commits.'}</p>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            ${tags.slice(0, 4).map(t => `<span class="tech-badge">${t}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
             </div>
