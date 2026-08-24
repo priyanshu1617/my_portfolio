@@ -370,8 +370,8 @@ body {
 
 .avatar-glow-ring {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
     padding: 8px;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -1052,8 +1052,8 @@ footer {
     }
     
     .avatar-glow-ring {
-        width: 250px;
-        height: 250px;
+        width: 380px;
+        height: 380px;
     }
     
     .about-card, .contact-form-container, .contact-info {
