@@ -24,6 +24,17 @@ window.addEventListener('mouseout', function() {
     mouse.y = null;
 });
 
+// Particle radius expansion on avatar hover
+const avatarGlowRing = document.querySelector('.avatar-glow-ring');
+if (avatarGlowRing) {
+    avatarGlowRing.addEventListener('mouseenter', () => {
+        mouse.radius = 300; // Increased radius to wrap around the large avatar
+    });
+    avatarGlowRing.addEventListener('mouseleave', () => {
+        mouse.radius = 120; // Default radius
+    });
+}
+
 // Handle window resizing
 window.addEventListener('resize', function() {
     canvas.width = window.innerWidth;
@@ -73,17 +84,26 @@ class Particle {
             let distance = Math.sqrt(dx * dx + dy * dy);
             
             if (distance < mouse.radius + this.size) {
-                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                    this.x += 2;
+                // Calculate angle of repulsion
+                const forceDirectionX = dx / distance;
+                const forceDirectionY = dy / distance;
+                
+                // Calculate force magnitude based on distance (closer = stronger force)
+                // Max force is 1 at center, 0 at the edge of the radius
+                const force = (mouse.radius - distance) / mouse.radius;
+                
+                // Repulsion speed multiplier (lower = slower reaction)
+                const repulsionSpeed = 1.5; 
+
+                // Prevent pushing particles completely out of bounds
+                const newX = this.x - forceDirectionX * force * repulsionSpeed;
+                const newY = this.y - forceDirectionY * force * repulsionSpeed;
+                
+                if (newX > this.size * 2 && newX < canvas.width - this.size * 2) {
+                    this.x = newX;
                 }
-                if (mouse.x > this.x && this.x > this.size * 10) {
-                    this.x -= 2;
-                }
-                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                    this.y += 2;
-                }
-                if (mouse.y > this.y && this.y > this.size * 10) {
-                    this.y -= 2;
+                if (newY > this.size * 2 && newY < canvas.height - this.size * 2) {
+                    this.y = newY;
                 }
             }
         }
