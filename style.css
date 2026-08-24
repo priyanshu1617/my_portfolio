@@ -900,7 +900,7 @@ body {
    ========================================== */
 footer {
     border-top: 1px solid var(--border-glass);
-    padding: 40px 0;
+    padding: 20px 0;
     text-align: center;
     background: rgba(7, 7, 13, 0.8);
     position: relative;
@@ -910,16 +910,16 @@ footer {
 .footer-content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .footer-content p {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 .footer-subtext {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
 }
 
 /* ==========================================
