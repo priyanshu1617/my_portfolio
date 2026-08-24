@@ -447,12 +447,20 @@ tabButtons.forEach(button => {
 const contactForm = document.getElementById('portfolio-contact-form');
 const formFeedback = document.getElementById('form-feedback');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const submitBtn = contactForm.querySelector('.btn-submit');
     const submitSpan = submitBtn.querySelector('span');
     const submitIcon = submitBtn.querySelector('i');
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value
+    };
     
     // UI state loading
     submitSpan.textContent = 'Sending...';
@@ -460,24 +468,40 @@ contactForm.addEventListener('submit', (e) => {
     submitBtn.style.opacity = '0.7';
     submitBtn.disabled = true;
 
-    // Simulate sending email api call
-    setTimeout(() => {
+    try {
+        const response = await fetch("https://formsubmit.co/ajax/priyanshuchandra822@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            // Setup success feedback
+            formFeedback.className = 'form-feedback success';
+            formFeedback.textContent = 'Thank you! Your message was submitted successfully.';
+            
+            // Reset form
+            contactForm.reset();
+        } else {
+            throw new Error('Form submission failed');
+        }
+    } catch (error) {
+        // Setup error feedback
+        formFeedback.className = 'form-feedback error';
+        formFeedback.textContent = 'Oops! Something went wrong. Please try again later.';
+    } finally {
         // Reset button
         submitSpan.textContent = 'Send Message';
         submitIcon.className = 'fas fa-paper-plane';
         submitBtn.style.opacity = '1';
         submitBtn.disabled = false;
-        
-        // Setup success feedback
-        formFeedback.className = 'form-feedback success';
-        formFeedback.textContent = 'Thank you! Your message was submitted successfully. (Demo Mode)';
-        
-        // Reset form
-        contactForm.reset();
-        
+
         // Clear message after 5 seconds
         setTimeout(() => {
             formFeedback.textContent = '';
         }, 5000);
-    }, 1500);
+    }
 });
